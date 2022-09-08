@@ -1,0 +1,42 @@
+<div class="modal-header">
+	<h4 class="modal-title" id="modalTitle">Mise a jour  du categorie</h4>
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	</div>
+				<div class="card-block" style="padding: 24px;">
+					<form th:action="@{/manager/add-provider}" method="post">
+						<fieldset>
+							<input type="hidden" name="providerId" th:value="${Provider.providerId}">
+							
+							<div class="form-group">
+								<label for="providerName">Nom du fournisseur</label> <input type="text"
+									class="form-control" id="providerName" name="providerName"
+									th:value="${Provider.providerName}">
+							</div>
+
+							<div class="form-group">
+								<label for="providerDescription">Description</label> <input
+									type="text" class="form-control" id="providerDescription"
+									name="providerDescription" th:value="${Provider.providerDescription}">
+							</div>
+
+							<div class="form-group">
+								<label for="providerNum">numero</label> <input
+									type="number" class="form-control" id="providerNum"
+									name="providerNum" th:value="${Provider.providerNum}">
+							</div>
+
+							
+							<div class="form-group">
+								<label for="file">Image du produit</label> <input type="file"
+									class="form-control" id="file" name="file">
+							</div>
+							<div class="form-actions" style="margin-top: 12px;">
+								<button type="submit" class="btn btn-success">Mise a jour</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
+						
+						</div>

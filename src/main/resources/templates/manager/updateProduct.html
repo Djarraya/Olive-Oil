@@ -1,0 +1,64 @@
+<div class="modal-header">
+	<h4 class="modal-title" id="modalTitle">Mise a jour  du produit</h4>
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	</div>
+				<div class="card-block" style="padding: 24px;">
+					<form th:action="@{/manager/add-product}" method="post"
+						enctype="multipart/form-data">
+						<fieldset>
+							<input type="hidden" name="productId" th:value="${Product.productId}">
+							<div class="form-group">
+							<select class="custom-select" name="category">
+									<option selected>Select Categorie</option>
+									<option th:each="category : ${categoryList}" 
+										th:value="${category.categoryId}"
+										th:text="${category.categoryName}"></option>
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<select class="custom-select" name="provider">
+									<option selected>Select Fournisseur</option>
+									<option th:each="provider : ${providerList}" 
+										th:value="${provider.providerId}"
+										th:text="${provider.providerName}"></option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="productName">Nom du produit</label> <input type="text"
+									class="form-control" id="productName" name="productName"
+									th:value="${Product.productName}">
+							</div>
+
+							<div class="form-group">
+								<label for="productDescription">Description du produit</label> <input
+									type="text" class="form-control" id="productDescription"
+									name="productDescription" th:value="${Product.productDescription}">
+							</div>
+
+							<div class="form-group">
+								<label for="productPrice">prix produit</label> <input
+									type="number" class="form-control" id="productPrice"
+									name="productPrice" th:value="${Product.productPrice}">
+							</div>
+
+							<div class="form-group">
+								<label for="productUnit">stock de produit</label> <input
+									type="number" class="form-control" id="productUnit"
+									name="productUnit" th:value="${Product.productUnit}">
+							</div>
+
+							<div class="form-group">
+								<label for="file">Image du produit</label> <input type="file"
+									class="form-control" id="file" name="file">
+							</div>
+							<div class="form-actions" style="margin-top: 12px;">
+								<button type="submit" class="btn btn-success">Mise a jour</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
+						
+						</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	<h1 class="display-4 my-3"th:text="'Num Commande : '+${cmd.cmdId}+''"></h1>
+		<div class="row">
+			<ul class="list-group col-9">
+				<li class="list-group-item d-flex justify-content-around">
+					<span class="my-auto h6">Image</span> 
+					<span class="my-auto h6">Produit</span> 
+					<span class="my-auto h6">Prix</span>
+					 <span class="my-auto h6">Quantite</span>
+					
+				</li>
+			</ul>
+		
+			<ul class="list-group col-9" th:each="product,state : ${productList}">
+				<li class="list-group-item d-flex justify-content-around"style="display: flex;
+    justify-content: center;
+    align-items: center;
+   ">
+					<img th:src="${product.image}"  style="max-height: 100px;
+    max-width: 180px;"> 
+					<span class="my-auto" th:text="${product.productName}"></span> 
+					<span class="my-auto" th:text="${product.productPrice}+'.000  TND'"></span>
+					<span class="my-auto" th:text="${list[state.index]}"></span>
+					
+					
+					
+					
+				</li>
+			</ul>
+			<ul class="list-group col-9">
+				<li class="list-group-item d-flex justify-content-end">
+					<span class="h6" th:text="'Totale : '+${cmd.cmdTotale}+'.000  TND'"></span>
+				</li>
+				<li class="list-group-item d-flex justify-content-end">
+					<span class="h6" th:text="'Etat : '+${cmd.cmdEtat}"></span>
+				</li>
+				<li class="list-group-item d-flex justify-content-end">
+					<span class="h6" th:text="'Date : '+${cmd.cmdDate}"></span>
+				</li>
+				
+			</ul>
+		</div>
+			</div>
+			<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+			</body>

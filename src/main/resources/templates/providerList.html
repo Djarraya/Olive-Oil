@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	
+
+	
+	<div class="container">
+		<h1 class="display-5">Nos Fournisseurs</h1>
+
+		
+
+		<div class="row">
+			<div class="col-sm-4" th:each="provider : ${providerList}">
+				<div class="card mt-4"style="border-style: double;
+  border-color: hsl(156deg 58% 72%);">
+				
+				<img th:src="${provider.image}" height="256" class="card-img-top" alt="PI">
+					<div class="card-body" >
+						<h5 th:text="${provider.providerName}" class="card-title"></h5>
+						
+					
+						<a th:href="@{'~/consulterFournisseur/' + {provider.providerId}}" class="btn btn-primary eBtn">Consulter</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+<div class="modal" id="myModal" >
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		
+		</div>
+	</div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+   	$(".eBtn").on("click", function(event){
+		 event.preventDefault();
+		 $("#myModal").modal("show").find(".modal-content").load($(this).attr("href"));   
+ });
+        });
+        
+        
+       
+</script>
+
+
+
+
+
+
+
+<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+	
+	</body>
+</html>

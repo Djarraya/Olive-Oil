@@ -1,0 +1,46 @@
+
+
+
+
+
+<table class="table my-5"style="background-color:white;">
+			<thead>
+				<tr>
+					<th scope="col">Image</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Numero</th>
+					<th scope="col">Description</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+			
+				<tr th:each="provider,state : ${providerList}">
+				
+					<td><img th:src="${provider.image}" width="150px"></td>
+					<th scope="row" th:text="${provider.providerName}"></th>
+					
+					<td th:text="${provider.providerNum}"></td>
+					<td th:text="${provider.providerDescription}"></td>
+			
+		
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
+						
+						</div>
+					

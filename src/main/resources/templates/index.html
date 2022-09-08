@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	
+
+	
+	<div class="container">
+		<h1 class="display-5">Nos Produits</h1>
+
+		<div class="d-flex justify-content-start p-2">
+			<a class="list-group-item mr-2" href="#" th:href="@{/allProduct}"style="background-color: #33b249;color: white;">Tous</a>
+				 
+			<a class="list-group-item mr-2"	th:each="category : ${categoryList}"
+				th:text="${category.categoryName}" href="#" th:href="@{'/getProducts/' + ${category.categoryId}}"style="background-color: mediumseagreen;color: white;"></a>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4" th:each="product : ${productList}">
+				<div class="card mt-4">
+				
+				<img th:src="${product.image}" height="256" class="card-img-top" alt="PI">
+					<div class="card-body" >
+						<h6 th:text="${product.productName}" class="card-title"style="text-align: center;"></h6>
+						<p th:text="${product.productDescription}" class="card-text"style="text-align: center;"></p>
+						<p th:text="${product.productPrice}+'.000  TND'" class="card-text"style="text-align: center;"></p>
+						<a th:href="@{'~/profile/confirmPanier/' + ${product.productId}}" class="btn btn-primary eBtn"style="margin:auto;display:block";>Ajouter au panier</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+<div class="modal" id="myModal" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+		</div>
+	</div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+   	$(".eBtn").on("click", function(event){
+		 event.preventDefault();
+		 $("#myModal").modal("show").find(".modal-content").load($(this).attr("href"));   
+ });
+        });
+        
+        function clearFilter() {
+        window.location = "[[@{'/index/'}]]";
+        }
+       
+</script>
+
+
+
+
+
+
+
+<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+	
+	</body>
+</html>

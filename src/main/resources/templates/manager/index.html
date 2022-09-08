@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+		<h1 class="display-4 my-2" th:text ="'Bienveune ' + ${#authentication.getPrincipal().getFirstName()}"></h1>
+		<hr>
+		<div class="row">
+			<div class="list-group list-group-flush col-5">
+				<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/category-form}"style="background-color: gainsboro;">Gerer Categories</a>
+				<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/product-form}">Gerer Products</a>
+					<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/region-form}"style="background-color: gainsboro;">Gerer Regions</a>
+					<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/item-form}">Gerer Publications</a>
+					
+					<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/provider-form}"style="background-color: gainsboro;">Gerer Fournisseurs</a>
+					<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/manager/Cmd-List}">Gerer Commandes</a>
+			</div>
+		</div>
+	</div>
+	<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+</body>
+</html>

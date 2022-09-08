@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	<div class="row my-5">
+			<div class="list-group list-group-flush col-5">
+				
+				<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/admin/add-user}">Ajouter Admin/Manager</a>
+				<a class="list-group-item list-group-item-action" 
+					href="#" th:href="@{/admin/user-list}"style="background-color: gainsboro;">Utilisateur/Manager/Admin List</a>
+								</div>
+
+		<table class="table my-5"style="background-color:white;">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Email</th>
+					<th scope="col">Role</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${userList}">
+					<th scope="row" th:text="${user.userId}"></th>
+					<td th:text="${user.firstName}"></td>
+					<td th:text="${user.lastName}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="${user.role}"></td>
+					<td>
+						<a href="#" th:href="@{'/admin/delete-User/'+ ${user.userId}}" 
+						class="btn btn-danger">Sup</a>
+						<a href="#" th:href="@{'/admin/maj-Role/'+ ${user.userId}}" 
+						class="btn btn-danger eBtn">Maj Role</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	</div>
+	<div class="modal" id="myModal" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+		</div>
+	</div>
+</div>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+   	$(".eBtn").on("click", function(event){
+		 event.preventDefault();
+		 $("#myModal").modal("show").find(".modal-content").load($(this).attr("href"));   
+ });
+        });
+
+        
+       
+</script>
+	<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+</body>
+</html>

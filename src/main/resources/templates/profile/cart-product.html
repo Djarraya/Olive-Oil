@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	<h1 class="display-4 my-3">Votre Panier !</h1>
+		<div class="row">
+			<ul class="list-group col-9">
+				<li class="list-group-item d-flex justify-content-around">
+					<span class="my-auto h6">Image</span> 
+					<span class="my-auto h6">Produit</span> 
+					<span class="my-auto h6">Prix</span>
+					 <span class="my-auto h6">Quantite</span>
+					<span class="my-auto h6">Action</span> 
+				</li>
+			</ul>
+		
+			<ul class="list-group col-9" th:each="product,state : ${productList}">
+				<li class="list-group-item d-flex justify-content-around"style="display: flex;
+    justify-content: center;
+    align-items: center;
+   ">
+					<img th:src="${product.image}"  style="max-height: 100px;
+    max-width: 180px;"> 
+					<span class="my-auto" th:text="${product.productName}"></span> 
+					<span class="my-auto" th:text="${product.productPrice}+'.000  TND'"></span>
+					<span class="my-auto" th:text="${list[state.index]}"></span>
+					
+					
+					<a href="#"
+						th:href="@{'/profile/delete-Product-Panier/'+ ${product.productId}}"
+						class="btn btn-danger"style="display: flex;
+								    justify-content: center;
+								    align-items: center;
+								    max-height: 40px;">Supp</a>
+				</li>
+			</ul>
+			
+						
+			<ul class="list-group col-9">
+				<li class="list-group-item d-flex justify-content-end">
+					<span class="h6" th:text="'Total : '+${sum}+'.000 TND'"></span>
+				</li>
+				
+						
+				<li class="list-group-item d-flex justify-content-end">
+				<form th:action="@{/profile/addToCmd}" method="post"
+						enctype="multipart/form-data">
+						<fieldset>
+						<input type="text"
+									class="form-control d-none" id="user" name="user"
+									th:value="${User.userId}">
+									 <input
+									type="number" class="form-control d-none" id="cmdTotale"
+									name="cmdTotale" th:value="${sum}">
+									
+									
+					<button type="submit" class="btn btn-primary">Valider commande</button>
+					</fieldset>
+					</form>
+				</li>
+				
+			</ul>
+			
+		</div>
+		
+					</div>
+					<footer style="margin-top : 200px" th:insert="footer.html"></footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+</head>
+<body>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	
+						
+						
+		<h1 class="display-5">Les Publications</h1>
+		
+		
+						
+				<div class="d-flex justify-content-start p-2">
+					<a class="list-group-item mr-2" href="#" th:href="@{/allItem}"style="background-color: mediumseagreen;color: white;">Tous</a> 
+					<a class="list-group-item mr-2"	th:each="region : ${regionList}"
+						th:text="${region.regionName}" href="#" th:href="@{'/getItems/' + ${region.regionId}}"style="background-color: mediumseagreen;color: white;"></a>
+				</div>
+		
+		<div class="row">
+			<div class="col-sm-4" th:each="item : ${itemList}">
+				<div class="card mt-4">
+				
+				<img th:src="${item.image}" height="256" class="card-img-top" alt="PI">
+					<div class="card-body">
+						<h5 th:text="${item.itemName}" class="card-title"></h5>
+						<p th:text="${item.itemDescription}" class="card-text"></p>
+						<p th:text="${item.itemPhoneNumber}" class="card-text"></p>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+<div sec:authorize="isAuthenticated()" class="d-flex justify-content-start p-2">
+					<a class="list-group-item mr-2" href="#" th:href="@{/profile/item-form}"style="background-color: blue;color: white;margin-top: 100px;">Ajouter une publication</a> 
+					
+				</div>
+	</div>
+	<footer style="margin-top : 50px" th:insert="footer.html"></footer>
+</body>
+</html>
